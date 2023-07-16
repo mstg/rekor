@@ -30,9 +30,9 @@ import (
 	"strings"
 
 	"github.com/asaskevich/govalidator"
-	rpmutils "github.com/cavaliercoder/go-rpm"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	rpmutils "github.com/mstg/go-rpm"
 	"golang.org/x/sync/errgroup"
 
 	"github.com/sigstore/rekor/pkg/generated/models"

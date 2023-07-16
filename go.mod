@@ -5,7 +5,6 @@ go 1.19
 require (
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
 	github.com/blang/semver v3.5.1+incompatible
-	github.com/cavaliercoder/go-rpm v0.0.0-20200122174316-8cb9fd9c31a8
 	github.com/go-chi/chi v4.1.2+incompatible
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/loads v0.21.2
@@ -57,6 +56,7 @@ require (
 	github.com/golang/mock v1.6.0
 	github.com/hashicorp/go-cleanhttp v0.5.2
 	github.com/hashicorp/go-retryablehttp v0.7.4
+	github.com/mstg/go-rpm v0.0.0-20230716035012-f28f34c0eaf9
 	github.com/redis/go-redis/v9 v9.0.5
 	github.com/sassoftware/relic/v7 v7.5.5
 	github.com/sigstore/protobuf-specs v0.2.0
@@ -129,7 +129,6 @@ require (
 	cloud.google.com/go/kms v1.13.0 // indirect
 	cloud.google.com/go/storage v1.30.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/cavaliercoder/badio v0.0.0-20160213150051-ce5280129e9e // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be // indirect
 	github.com/danieljoos/wincred v1.1.2 // indirect
