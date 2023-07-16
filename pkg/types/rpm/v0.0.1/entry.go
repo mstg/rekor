@@ -182,7 +182,13 @@ func (v *V001Entry) fetchExternalEntities(ctx context.Context) (*pgp.PublicKey, 
 			return closePipesOnError(types.ValidationError(err))
 		}
 
-		if _, err := rpmutils.GPGCheck(sigR, keyring); err != nil {
+		b, err := io.ReadAll(sigR)
+		if err != nil {
+			return closePipesOnError(types.ValidationError(err))
+		}
+		r := bytes.NewReader(b)
+
+		if _, err := rpmutils.GPGCheck2(r, keyring); err != nil {
 			return closePipesOnError(types.ValidationError(err))
 		}
 
