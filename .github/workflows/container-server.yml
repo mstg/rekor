@@ -1,0 +1,39 @@
+name: Publish rekor-server
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Login against a Docker registry except on PR
+      # https://github.com/docker/login-action
+      - name: Log into registry ${{ env.REGISTRY }}
+        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: ko-build/setup-ko@v0.6
+        env:
+          KO_DOCKER_REPO: ghcr.io/mstg/rekor/rekor-server
+
+      - name: Build and publish
+        run: |
+          export GIT_VERSION=$(git describe --tags --always --dirty)
+          export GIT_HASH=$(git rev-parse HEAD)
+          ko build --tags=$GIT_VERSION --tags=$GIT_HASH --tags=latest --platform=linux/amd64,linux/arm64 --bare ./cmd/rekor-server
